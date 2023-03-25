@@ -27,4 +27,8 @@ router.post('/create', [
 
 router.post('/getappsdata', ApplicationController.getApp)
 
+router.post('/updateappstatus', ApplicationController.updateAppStatus)
+
+router.get('/getstatistics', ApplicationController.getStat)
+
 module.exports = router
