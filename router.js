@@ -16,14 +16,13 @@ router.post('/registration', [
 
 router.post('/login', Authcontroller.login)
 
+router.post('/getuserdata', Authcontroller.getUser)
+
 router.post('/create', [
-    check('id', "id не может быть пустым").notEmpty(),
     check('title', "title не может быть пустым").notEmpty(),
     check('category', "category не может быть пустым").notEmpty(),
     check('price', "price не может быть пустым").notEmpty(),
-    check('status', "status не может быть пустым").notEmpty(),
-    check('date_sending', "date_sending не может быть пустым").notEmpty(),
-    check('date_execution', "date_execution не может быть пустым").notEmpty(),
+    check('status', "status не может быть пустым").notEmpty()
 ], ApplicationController.create)
 
 module.exports = router

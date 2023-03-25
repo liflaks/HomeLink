@@ -1,3 +1,4 @@
+const jwtDecode = require('jwt-decode');
 const User = require('./models/User')
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -69,8 +70,10 @@ class authController {
 
     async getUser(req, res) {
         try {
-            const {id} = req.body;
-            const user = await User.findOne(id)
+            const {token} = req.body;
+            const payload = jwtDecode(token);
+            const { id } = payload;
+            const user = await User.findOne({id})
             res.json(user)
         } catch (e) {
             console.log(e)
