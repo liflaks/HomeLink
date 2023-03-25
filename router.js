@@ -1,6 +1,7 @@
 const Router = require('express')
 const router = new Router()
-const controller = require('./authController')
+const Authcontroller = require('./authController')
+const ApplicationController = require('./applicationController')
 const {check} = require("express-validator")
 const authMiddleware = require('./middlewaree/authMiddleware')
 
@@ -11,7 +12,18 @@ router.post('/registration', [
     check('zhk', "Введите корректный ЖК").trim().notEmpty(),
     check('appartamentNumber', "Номер квартиры не может быть пустым").trim().notEmpty(),
     check('phoneNumber', "Введите корректный номер телефона").trim()
-], controller.registration)
-router.post('/login', controller.login)
+], Authcontroller.registration)
+
+router.post('/login', Authcontroller.login)
+
+router.post('/create', [
+    check('id', "id не может быть пустым").notEmpty(),
+    check('title', "title не может быть пустым").notEmpty(),
+    check('category', "category не может быть пустым").notEmpty(),
+    check('price', "price не может быть пустым").notEmpty(),
+    check('status', "status не может быть пустым").notEmpty(),
+    check('date_sending', "date_sending не может быть пустым").notEmpty(),
+    check('date_execution', "date_execution не может быть пустым").notEmpty(),
+], ApplicationController.create)
 
 module.exports = router

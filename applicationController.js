@@ -1,4 +1,5 @@
 const Application = require('./models/Application')
+const { validationResult } = require('express-validator')
 
 class applicationController{
     async create(req, res){
@@ -8,7 +9,7 @@ class applicationController{
                 return res.status(400).json({message: "Ошибка при создании заявки", errors})
             }
             const {id, title, category, price, status, date_sending, date_execution} = req.body;
-            const application = new application({})
+            const application = new Application({id, title, category, price, status, date_sending, date_execution})
             await application.save()
             return res.json({message: "Заявка отправлена"})
         } catch (e) {
@@ -17,3 +18,5 @@ class applicationController{
         }
     }
 }
+
+module.exports = new applicationController()

@@ -76,8 +76,6 @@ class authController {
             console.log(e)
         }
     }
-
-
 }
 
 module.exports = new authController()
