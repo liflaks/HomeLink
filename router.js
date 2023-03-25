@@ -25,4 +25,6 @@ router.post('/create', [
     check('status', "status не может быть пустым").notEmpty()
 ], ApplicationController.create)
 
+router.post('/getappsdata', ApplicationController.getApp)
+
 module.exports = router

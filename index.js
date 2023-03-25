@@ -1,7 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const router = require('./router')
-const {PORT} = require("./config") || 3001
+const {PORT} = require("./config") || 4002
 var cors = require('cors')
 
 const app = express()

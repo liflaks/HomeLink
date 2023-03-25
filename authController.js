@@ -73,7 +73,7 @@ class authController {
             const {token} = req.body;
             const payload = jwtDecode(token);
             const { id } = payload;
-            const user = await User.findOne({id})
+            const user = await User.findById(id);
             res.json(user)
         } catch (e) {
             console.log(e)
