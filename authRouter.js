@@ -10,6 +10,7 @@ router.post('/registration', [
     check('iin', "Введите корректный ИИН").trim().isLength({min:12, max:12}),
     check('zhk', "Введите корректный ЖК").trim().notEmpty(),
     check('appartamentNumber', "Номер квартиры не может быть пустым").trim().notEmpty(),
+    check('phoneNumber', "Введите корректный номер телефона").trim()
 ], controller.registration)
 router.post('/login', controller.login)
 
