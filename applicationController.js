@@ -29,7 +29,6 @@ class applicationController{
 
     async getApps(req, res){
         try {
-            const {id} = req.body;
             const applications = await Application.find();
             res.json(applications)
         } catch (e) {
