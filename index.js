@@ -1,9 +1,11 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const authRouter = require('./authRouter')
-const PORT = process.env.PORT || 5000
+const {PORT} = require("./config") || 3001
 
 const app = express()
+
+app.use(cors())
 
 app.use(express.json())
 app.use("/auth", authRouter)
