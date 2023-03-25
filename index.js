@@ -2,6 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const authRouter = require('./authRouter')
 const {PORT} = require("./config") || 3001
+var cors = require('cors')
 
 const app = express()
 
