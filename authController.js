@@ -79,6 +79,18 @@ class authController {
             console.log(e)
         }
     }
+
+    async addApp(req,res) {
+        try{
+            const {id, app} = req.body
+            const {apps} = await User.findById(id);
+            apps.push(app)
+            const usr = await User.updateOne({'id': id }, {$set: {'apps': apps} });
+            res.json({message: `Application Added - Affected rows: ${app.matchedCount}`})
+        } catch(e){
+            console.log(e)
+        }
+    }
 }
 
 module.exports = new authController()

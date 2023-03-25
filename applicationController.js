@@ -8,8 +8,8 @@ class applicationController{
             if (!errors.isEmpty()) {
                 return res.status(400).json({message: "Ошибка при создании заявки", errors})
             }
-            const {id, title, category, price, status} = req.body;
-            const application = new Application({id, title, category, price, status})
+            const {id, title, category, price, status, sender, phoneNumber} = req.body;
+            const application = new Application({id, title, category, price, status, sender, phoneNumber})
             await application.save()
             return res.json({id})
         } catch (e) {
@@ -22,6 +22,16 @@ class applicationController{
             const {id} = req.body;
             const application = await Application.findOne({id});
             res.json(application)
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+    async getApps(req, res){
+        try {
+            const {id} = req.body;
+            const applications = await Application.find();
+            res.json(applications)
         } catch (e) {
             console.log(e)
         }

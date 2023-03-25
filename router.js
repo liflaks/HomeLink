@@ -18,6 +18,8 @@ router.post('/login', Authcontroller.login)
 
 router.post('/getuserdata', Authcontroller.getUser)
 
+router.post('/addApp', Authcontroller.addApp)
+
 router.post('/create', [
     check('title', "title не может быть пустым").notEmpty(),
     check('category', "category не может быть пустым").notEmpty(),
@@ -25,7 +27,8 @@ router.post('/create', [
     check('status', "status не может быть пустым").notEmpty()
 ], ApplicationController.create)
 
-router.post('/getappsdata', ApplicationController.getApp)
+router.post('/getappdata', ApplicationController.getApp)
+router.post('/getappsdata', ApplicationController.getApps)
 
 router.post('/updateappstatus', ApplicationController.updateAppStatus)
 

@@ -6,6 +6,8 @@ const Application = new Schema({
     category: {type: String, required: true},
     price: {type: Number, default: 0, required: true},
     status: {type: Number, required: true},
+    sender: {type: String, required: true},
+    phoneNumber: {type: String, required: true}
 }, {timestamps: true})
 
 module.exports = model('Application', Application) 
