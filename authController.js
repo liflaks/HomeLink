@@ -4,12 +4,17 @@ const jwt = require('jsonwebtoken');
 const { validationResult } = require('express-validator')
 const {secret} = require("./config")
 
-const generateAccessToken = (id, roles) => {
+const generateAccessToken = (id, roles, iin, password, zhk, appartamentNumber, phoneNumber) => {
     const payload = {
         id,
-        roles
+        roles,
+        iin,
+        password,
+        zhk,
+        appartamentNumber,
+        phoneNumber
     }
-    return jwt.sign(payload, secret, {expiresIn: "24h"} )
+    return jwt.sign(payload, secret, {expiresIn: "30d"} )
 }
 
 class authController {
@@ -61,6 +66,18 @@ class authController {
             console.log(e)
         }
     }
+
+    async getUser(req, res) {
+        try {
+            const {id} = req.body;
+            const user = await User.findOne(id)
+            res.json(user)
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+
 }
 
 module.exports = new authController()

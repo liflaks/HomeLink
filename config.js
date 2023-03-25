@@ -1,4 +1,4 @@
 module.exports = {
-    secret: "SECRET_KEY_RANDOM",
+    secret: "ALIKHAN_GAY",
     PORT: 5000
 }
