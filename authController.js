@@ -86,7 +86,7 @@ class authController {
             const {userId, appId} = req.body
             const {apps} = await User.findById(userId);
             apps.push(appId)
-            const usr = await User.updateOne({'id': userId }, {$set: {'apps': apps} });
+            const usr = await User.updateOne({'_id': userId }, {$set: {'apps': apps} });
             res.json({message: `Application Added - Affected rows: ${usr.matchedCount}`})
         } catch(e){
             console.log(e)
