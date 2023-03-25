@@ -19,6 +19,7 @@ const generateAccessToken = (id, roles, iin, password, zhk, appartamentNumber, p
 }
 
 class authController {
+
     async registration(req, res) {
         try {
             const errors = validationResult(req)
@@ -42,10 +43,10 @@ class authController {
 
     async login(req, res) {
         try {
-            const {username, password} = req.body
-            const user = await User.findOne({username})
+            const {phoneNumber, password} = req.body
+            const user = await User.findOne({phoneNumber})
             if (!user) {
-                return res.status(400).json({message: `Пользователь ${username} не найден`})
+                return res.status(400).json({message: `Пользователь ${phoneNumber} не найден`})
             }
             const validPassword = bcrypt.compareSync(password, user.password)
             if (!validPassword) {
@@ -82,11 +83,11 @@ class authController {
 
     async addApp(req,res) {
         try{
-            const {id, app} = req.body
-            const {apps} = await User.findById(id);
-            apps.push(app)
-            const usr = await User.updateOne({'id': id }, {$set: {'apps': apps} });
-            res.json({message: `Application Added - Affected rows: ${app.matchedCount}`})
+            const {userId, appId} = req.body
+            const {apps} = await User.findById(userId);
+            apps.push(appId)
+            const usr = await User.updateOne({'id': userId }, {$set: {'apps': apps} });
+            res.json({message: `Application Added - Affected rows: ${usr.matchedCount}`})
         } catch(e){
             console.log(e)
         }

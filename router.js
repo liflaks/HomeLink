@@ -28,7 +28,7 @@ router.post('/create', [
 ], ApplicationController.create)
 
 router.post('/getappdata', ApplicationController.getApp)
-router.post('/getappsdata', ApplicationController.getApps)
+router.get('/getappsdata', ApplicationController.getApps)
 
 router.post('/updateappstatus', ApplicationController.updateAppStatus)
 
