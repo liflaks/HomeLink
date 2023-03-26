@@ -87,7 +87,7 @@ class applicationController{
                     appartament.push(price)
                 }
 
-                else if (category == "Подъезд"){
+                else if (category == "Подьезд"){
                     entrance.push(price)
                 }
 
