@@ -116,6 +116,28 @@ class applicationController{
                 finalTotal += item
             })
 
+            appartament.map((item) => {
+                finalAppartament += item
+            })
+
+            entrance.map((item) => {
+                finalEntrance += item
+            })
+
+            parking.map((item) => {
+                finalParking += item
+            })
+
+            frontage.map((item) => {
+                finalFrontage += item
+            })
+
+            improvment.map((item) => {
+                finalImprovment += item
+            })
+
+
+
             res.json({total: total})
         } catch(e){
             console.log(e)
