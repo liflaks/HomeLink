@@ -2,6 +2,7 @@ const Router = require('express')
 const router = new Router()
 const Authcontroller = require('./authController')
 const ApplicationController = require('./applicationController')
+const ContactController = require('./contactController')
 const {check} = require("express-validator")
 const authMiddleware = require('./middlewaree/authMiddleware')
 
@@ -35,5 +36,8 @@ router.post('/updateAppStatus', ApplicationController.updateAppStatus) //изм�
 
 router.get('/getStatistics', ApplicationController.getStat) //получение статистики заявок
 router.get('/getStatFinance', ApplicationController.getStatFinance) //получение статистики финанс
+
+router.post('/addContact', ContactController.addContact) //добавление контакта
+router.get('/getContacts', ContactController.getContacts) //получение контактов
 
 module.exports = router
