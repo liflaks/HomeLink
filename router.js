@@ -33,5 +33,6 @@ router.get('/getAppsData', ApplicationController.getApps) //получение �
 router.post('/updateAppStatus', ApplicationController.updateAppStatus) //изменение статуса заявки через её id 
 
 router.get('/getStatistics', ApplicationController.getStat) //получение статистики заявок
+router.get('/getStatFinance', ApplicationController.getStatFinance) //получение статистики финанс
 
 module.exports = router

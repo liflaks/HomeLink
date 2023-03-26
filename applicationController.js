@@ -136,9 +136,7 @@ class applicationController{
                 finalImprovment += item
             })
 
-
-
-            res.json({total: total})
+            res.json({finalTotal: finalTotal, finalAppartament: finalAppartament, finalEntrance: finalEntrance, finalParking: finalParking, finalFrontage: finalFrontage, finalImprovment: finalImprovment})
         } catch(e){
             console.log(e)
         }
