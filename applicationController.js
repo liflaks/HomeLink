@@ -111,7 +111,6 @@ class applicationController{
             let finalFrontage = 0;
             let finalImprovment = 0;
 
-
             total.map((item) => {
                 finalTotal += item
             })

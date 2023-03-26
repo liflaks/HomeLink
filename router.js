@@ -17,6 +17,7 @@ router.post('/registration', [
 router.post('/login', Authcontroller.login) //вход в аккаунт через номер телефона и пороль
 
 router.post('/getUserData', Authcontroller.getUser) //добавление id заявки к пользователю через токен
+router.post('/checkToken', Authcontroller.checkToken) //проверка токена
 
 router.post('/addApp', Authcontroller.addApp) //добавление id заявки к пользователю через юзер айди
 
