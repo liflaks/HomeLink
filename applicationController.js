@@ -83,23 +83,23 @@ class applicationController{
                 const { price } = element
                 const { category } = element
                 total.push(price)
-                if (category == "appartament"){
+                if (category == "Квартира"){
                     appartament.push(price)
                 }
 
-                else if (category == "entrance"){
+                else if (category == "Подъезд"){
                     entrance.push(price)
                 }
 
-                else if (category == "parking"){
+                else if (category == "Паркинг"){
                     parking.push(price)
                 }
 
-                else if (category == "frontage"){
+                else if (category == "Фасад"){
                     frontage.push(price)
                 }
 
-                else if (category == "improvment"){
+                else if (category == "Благоустройство"){
                     improvment.push(price)
                 }
             })
