@@ -12,26 +12,26 @@ router.post('/registration', [
     check('zhk', "Введите корректный ЖК").trim().notEmpty(),
     check('appartamentNumber', "Номер квартиры не может быть пустым").trim().notEmpty(),
     check('phoneNumber', "Введите корректный номер телефона").trim()
-], Authcontroller.registration)
+], Authcontroller.registration) //создание аккаунта
 
-router.post('/login', Authcontroller.login)
+router.post('/login', Authcontroller.login) //вход в аккаунт через номер телефона и пороль
 
-router.post('/getuserdata', Authcontroller.getUser)
+router.post('/getUserData', Authcontroller.getUser) //добавление id заявки к пользователю через токен
 
-router.post('/addApp', Authcontroller.addApp)
+router.post('/addApp', Authcontroller.addApp) //добавление id заявки к пользователю через юзер айди
 
 router.post('/create', [
     check('title', "title не может быть пустым").notEmpty(),
     check('category', "category не может быть пустым").notEmpty(),
     check('price', "price не может быть пустым").notEmpty(),
     check('status', "status не может быть пустым").notEmpty()
-], ApplicationController.create)
+], ApplicationController.create) //создание заявки
 
-router.post('/getappdata', ApplicationController.getApp)
-router.get('/getappsdata', ApplicationController.getApps)
+router.post('/getAppData', ApplicationController.getApp) //добавление id заявки к пользователю через юзер айди
+router.get('/getAppsData', ApplicationController.getApps) //получение информации всех заявок
 
-router.post('/updateappstatus', ApplicationController.updateAppStatus)
+router.post('/updateAppStatus', ApplicationController.updateAppStatus) //изменение статуса заявки через её id 
 
-router.get('/getstatistics', ApplicationController.getStat)
+router.get('/getStatistics', ApplicationController.getStat) //получение статистики заявок
 
 module.exports = router
