@@ -5,10 +5,10 @@ const jwt = require('jsonwebtoken');
 const { validationResult } = require('express-validator')
 const {secret} = require("./config")
 
-const generateAccessToken = (id, roles, iin, password, zhk, appartamentNumber, phoneNumber) => {
+const generateAccessToken = (id, role, iin, password, zhk, appartamentNumber, phoneNumber) => {
     const payload = {
         id,
-        roles,
+        role,
         iin,
         password,
         zhk,
@@ -52,7 +52,7 @@ class authController {
             if (!validPassword) {
                 return res.status(400).json({message: `Введен неверный пароль`})
             }
-            const token = generateAccessToken(user._id, user.roles)
+            const token = generateAccessToken(user._id, user.roles, user.iin, user.password, user.zhk, user.appartamentNumber, user.phoneNumber)
             return res.json({token, user})
         } catch (e) {
             console.log(e)
@@ -86,10 +86,33 @@ class authController {
             const {userId, appId} = req.body
             const {apps} = await User.findById(userId);
             apps.push(appId)
-            const usr = await User.updateOne({'id': userId }, {$set: {'apps': apps} });
+            const usr = await User.updateOne({'_id': userId }, {$set: {'apps': apps} });
             res.json({message: `Application Added - Affected rows: ${usr.matchedCount}`})
         } catch(e){
             console.log(e)
+        }
+    }
+
+    async checkToken(req,res){
+        try{
+            const {token} = req.body
+            const payload = jwtDecode(token);
+            console.log(payload)
+            const { id, password } = payload;
+            const user = await User.findById(id);
+            const validPassword = bcrypt.compareSync(password, user.password)
+            console.log(password)
+            console.log(user.password)
+            if (user == null || validPassword){
+                return res.json({result: "Invalid"})
+            }
+
+            else{
+                return res.json({result: "Valid"})
+            }
+
+        } catch(e){
+            return res.json({result: "Invalid"})
         }
     }
 }

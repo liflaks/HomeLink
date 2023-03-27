@@ -26,7 +26,7 @@ class applicationController{
             console.log(e)
         }
     }
-
+    
     async getApps(req, res){
         try {
             const applications = await Application.find();
@@ -65,6 +65,77 @@ class applicationController{
             })
             res.json({allApps: apps.length, acceptedApps: accepted.length, declinedApps: declined.length, waitingApps:  waiting.length, finishedApps: finished.length})
 
+        } catch(e){
+            console.log(e)
+        }
+    }
+
+    async getStatFinance(req, res){
+        try{
+            var apps = await Application.find()
+            const total = []
+            const appartament = []
+            const entrance = [] //подъезд
+            const parking = [] 
+            const frontage = [] //фасад 
+            const improvment = [] //благоустройство
+            apps.forEach(element => {
+                const { price } = element
+                const { category } = element
+                total.push(price)
+                if (category == "Квартира"){
+                    appartament.push(price)
+                }
+
+                else if (category == "Подьезд"){
+                    entrance.push(price)
+                }
+
+                else if (category == "Паркинг"){
+                    parking.push(price)
+                }
+
+                else if (category == "Фасад"){
+                    frontage.push(price)
+                }
+
+                else if (category == "Благоустройство"){
+                    improvment.push(price)
+                }
+            })
+
+            let finalTotal = 0;
+            let finalAppartament = 0;
+            let finalEntrance = 0;
+            let finalParking = 0;
+            let finalFrontage = 0;
+            let finalImprovment = 0;
+
+            total.map((item) => {
+                finalTotal += item
+            })
+
+            appartament.map((item) => {
+                finalAppartament += item
+            })
+
+            entrance.map((item) => {
+                finalEntrance += item
+            })
+
+            parking.map((item) => {
+                finalParking += item
+            })
+
+            frontage.map((item) => {
+                finalFrontage += item
+            })
+
+            improvment.map((item) => {
+                finalImprovment += item
+            })
+
+            res.json({finalTotal: finalTotal, finalAppartament: finalAppartament, finalEntrance: finalEntrance, finalParking: finalParking, finalFrontage: finalFrontage, finalImprovment: finalImprovment})
         } catch(e){
             console.log(e)
         }
